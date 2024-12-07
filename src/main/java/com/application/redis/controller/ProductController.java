@@ -3,6 +3,9 @@ package com.application.redis.controller;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +27,7 @@ public class ProductController {
 	private ProductService service;
 	@PostMapping("/save")
 	public ResponseEntity<Product> saveProduct(@RequestBody Product product){
-		 return ResponseEntity.status(HttpStatus.OK).body(product);
+		 return ResponseEntity.status(HttpStatus.OK).body(service.saveProduct(product));
 		
 	}
 	
